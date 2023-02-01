@@ -1,0 +1,23 @@
+-*-----------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*FEX_DESCRIPTION=Legacy Sample: Styled report against CAR
+-*-----------------------------------------------------------------------------*
+ 
+-DEFAULTS &COUNTRY='$*';
+-RUN
+ 
+TABLE FILE CAR
+PRINT CAR MODEL SEATS
+BY COUNTRY
+IF COUNTRY EQ '&COUNTRY'
+ON TABLE PCHOLD FORMAT HTML
+ON TABLE SET SHORTPATH SQL
+ON TABLE SET STYLE *
+TYPE=DATA,COLUMN=COUNTRY,COLOR=RED,STYLE=BOLD+ITALIC,$
+TYPE=DATA,COLUMN=CAR,COLOR=CYAN,STYLE=BOLD,$
+TYPE=DATA,COLUMN=MODEL,COLOR=YELLOW,STYLE=BOLD,WHEN=SEATS GT 4,
+FOCEXEC=CARINST2(MODEL=N3),$
+TYPE=DATA,COLUMN=SEATS,STYLE=BOLD,$
+END
+ 
