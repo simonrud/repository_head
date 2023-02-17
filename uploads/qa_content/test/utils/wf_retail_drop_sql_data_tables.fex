@@ -1,0 +1,29 @@
+-*DM_REQ_DESC=Drop SQL Data Tables                                              
+-SET &ECHO = OFF ;                                                              
+SET PASS = UNRESTRICTED                                                         
+DROP FILE qa_repository_head/uploads/qa_content/facts/wf_retail_shipments
+DROP FILE qa_repository_head/uploads/qa_content/facts/wf_retail_sales
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_customer
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_customer_missingdata
+DROP FILE qa_repository_head/uploads/qa_content/facts/wf_retail_labor
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_labor_rate
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_employee
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_marital_status
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_industry
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_income
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_age
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_shipping_options
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_store
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_product
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_discount
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_currency
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_vendor
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_occupation
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_education
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_education_missingrecs
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_geography
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_time_lite
+DROP FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_time
+-RUN                                                                            
+* 18662 = SQL Tables Dropped                                                    
+-SET &MSG = EMGPUT(18662,0,0,'',0,'',0,'',256,A256);                            

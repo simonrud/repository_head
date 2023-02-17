@@ -1,0 +1,155 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Category Year Chart
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET FCA ON
+GRAPH FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ SUM
+  SUM.COGS_US
+  SUM.GROSS_PROFIT_US
+  BY PRODUCT_CATEGORY
+  BY WF_RETAIL_TIME_SALES.TIME_QTR
+ON TABLE SET SHORTPATH SQL
+ON TABLE PCHOLD FORMAT JSCHART
+ON TABLE SET HTMLENCODE ON
+ON TABLE SET PAGE-NUM OFF
+ON TABLE SET GRAPHDEFAULT OFF
+ON TABLE SET LOOKGRAPH BAR
+ON TABLE SET AUTOFIT ON
+ON TABLE SET EMBEDHEADING ON
+ON TABLE SET STYLE *
+INCLUDE=_edahome/etc/ENID_Warm, $
+CHART-ORIENTATION=HORIZONTAL, $
+TYPE=DATA, COLUMN=N3,  /*SUM.COGS_US*/
+BUCKET=Y-AXIS, $
+TYPE=DATA, COLUMN=N4,  /*SUM.GROSS_PROFIT_US*/
+BUCKET=Y-AXIS, $
+TYPE=DATA, COLUMN=N1,  /*PRODUCT_CATEGORY*/
+BUCKET=row, $
+TYPE=DATA, COLUMN=N2,  /*WF_RETAIL_TIME_SALES.TIME_QTR*/
+BUCKET=row, $
+TYPE=DATA, COLUMN=N3,  /*SUM.COGS_US*/
+DRILLMENUITEM='Drill Up to Sale,Year',
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLUP' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Drill Down to', NAME=ddr_3,
+DRILLMENUITEM='Product,Subcategory', PARENT=ddr_3, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='Sale,Month', PARENT=ddr_3, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Drill to', NAME=ddrf_3,
+DRILLMENUITEM='Product,Subcategory', PARENT=ddrf_3, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' DrillFilter=N1 ),
+DRILLMENUITEM='Sale,Month', PARENT=ddrf_3, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' DrillFilter=N2 ),
+DRILLMENUITEM='SEPARATOR',
+DRILLMENUITEM='Filter', NAME=fltr_2,
+DRILLMENUITEM='Cost of Goods - Higher', PARENT=fltr_2, NAME=COGS_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER_GE' rowid_at_menu_='NTTP_FIELD_COGS_US' DrillFilter=N3 ),
+DRILLMENUITEM='Cost of Goods - Lower', PARENT=fltr_2, NAME=COGS_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER_LE' rowid_at_menu_='NTTP_FIELD_COGS_US' DrillFilter=N3 ),
+DRILLMENUITEM='SEPARATOR', PARENT=fltr_2,
+DRILLMENUITEM='Product,Category - Add', PARENT=fltr_2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' DrillFilter=N1 ),
+DRILLMENUITEM='SEPARATOR', PARENT=fltr_2,
+DRILLMENUITEM='Sale,Quarter - Add', PARENT=fltr_2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' DrillFilter=N2 ),
+DRILLMENUITEM='Sort', NAME=Srtd2,
+DRILLMENUITEM='Cost of Goods Ascending', PARENT=Srtd2, NAME=COGS_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_ASC' rowid_at_menu_='NTTP_FIELD_COGS_US' ),
+DRILLMENUITEM='Cost of Goods Descending', PARENT=Srtd2, NAME=COGS_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_DESC' rowid_at_menu_='NTTP_FIELD_COGS_US' ),
+DRILLMENUITEM='Cost of Goods None - Current', PARENT=Srtd2, NAME=COGS_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_NONE' rowid_at_menu_='NTTP_FIELD_COGS_US' ),
+DRILLMENUITEM='SEPARATOR', PARENT=Srtd2,
+DRILLMENUITEM='Product,Category Ascending - Current', PARENT=Srtd2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='Product,Category Descending', PARENT=Srtd2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='SEPARATOR', PARENT=Srtd2,
+DRILLMENUITEM='Sale,Quarter Ascending - Current', PARENT=Srtd2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Sale,Quarter Descending', PARENT=Srtd2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Aggregation', NAME=aggr_2,
+DRILLMENUITEM='None', PARENT=aggr_2, NAME=None,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' ),
+DRILLMENUITEM='SUM - Current', PARENT=aggr_2, NAME=SUM,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' AggrType=85 ),
+DRILLMENUITEM='MAX', PARENT=aggr_2, NAME=MAX,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' AggrType=87 ),
+DRILLMENUITEM='MIN', PARENT=aggr_2, NAME=MIN,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' AggrType=88 ),
+DRILLMENUITEM='CNT', PARENT=aggr_2, NAME=CNT,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' AggrType=92 ),
+DRILLMENUITEM='AVE', PARENT=aggr_2, NAME=AVE,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_COGS_US' AggrType=86 ),
+DRILLMENUITEM='SEPARATOR',
+DRILLMENUITEM='Undo',
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='UNDO' rowid_at_menu_='NTTP_FIELD_COGS_US' ), $
+TYPE=DATA, COLUMN=N4,  /*SUM.GROSS_PROFIT_US*/
+DRILLMENUITEM='Drill Up to Sale,Year',
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLUP' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Drill Down to', NAME=ddr_4,
+DRILLMENUITEM='Product,Subcategory', PARENT=ddr_4, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='Sale,Month', PARENT=ddr_4, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Drill to', NAME=ddrf_4,
+DRILLMENUITEM='Product,Subcategory', PARENT=ddrf_4, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' DrillFilter=N1 ),
+DRILLMENUITEM='Sale,Month', PARENT=ddrf_4, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='DRILLDOWNREPLACE' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' DrillFilter=N2 ),
+DRILLMENUITEM='SEPARATOR',
+DRILLMENUITEM='Filter', NAME=fltr_2,
+DRILLMENUITEM='Gross Profit - Higher', PARENT=fltr_2, NAME=GROSS_PROFIT_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER_GE' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' DrillFilter=N4 ),
+DRILLMENUITEM='Gross Profit - Lower', PARENT=fltr_2, NAME=GROSS_PROFIT_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER_LE' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' DrillFilter=N4 ),
+DRILLMENUITEM='SEPARATOR', PARENT=fltr_2,
+DRILLMENUITEM='Product,Category - Add', PARENT=fltr_2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' DrillFilter=N1 ),
+DRILLMENUITEM='SEPARATOR', PARENT=fltr_2,
+DRILLMENUITEM='Sale,Quarter - Add', PARENT=fltr_2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ADDFLITER' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' DrillFilter=N2 ),
+DRILLMENUITEM='Sort', NAME=Srtd2,
+DRILLMENUITEM='Gross Profit Ascending', PARENT=Srtd2, NAME=GROSS_PROFIT_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_ASC' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' ),
+DRILLMENUITEM='Gross Profit Descending', PARENT=Srtd2, NAME=GROSS_PROFIT_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_DESC' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' ),
+DRILLMENUITEM='Gross Profit None - Current', PARENT=Srtd2, NAME=GROSS_PROFIT_US,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='SORT_NONE' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' ),
+DRILLMENUITEM='SEPARATOR', PARENT=Srtd2,
+DRILLMENUITEM='Product,Category Ascending - Current', PARENT=Srtd2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='Product,Category Descending', PARENT=Srtd2, NAME=PRODUCT_CATEGORY,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_PRODUCT_CATEGORY' ),
+DRILLMENUITEM='SEPARATOR', PARENT=Srtd2,
+DRILLMENUITEM='Sale,Quarter Ascending - Current', PARENT=Srtd2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Sale,Quarter Descending', PARENT=Srtd2, NAME=WF_RETAIL_TIME_SALES.TIME_QTR,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='ASCENDING' rowid_at_menu_='NTTP_BY_WF_RETAIL_TIME_SALES_TIME_QTR' ),
+DRILLMENUITEM='Aggregation', NAME=aggr_2,
+DRILLMENUITEM='None', PARENT=aggr_2, NAME=None,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' ),
+DRILLMENUITEM='SUM - Current', PARENT=aggr_2, NAME=SUM,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' AggrType=85 ),
+DRILLMENUITEM='MAX', PARENT=aggr_2, NAME=MAX,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' AggrType=87 ),
+DRILLMENUITEM='MIN', PARENT=aggr_2, NAME=MIN,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' AggrType=88 ),
+DRILLMENUITEM='CNT', PARENT=aggr_2, NAME=CNT,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' AggrType=92 ),
+DRILLMENUITEM='AVE', PARENT=aggr_2, NAME=AVE,
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='AGGREGATION' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' AggrType=86 ),
+DRILLMENUITEM='SEPARATOR',
+DRILLMENUITEM='Undo',
+  URL=/webconsole?(CGIX_cmd='NTMSelTestSQL' action='UNDO' rowid_at_menu_='NTTP_FIELD_GROSS_PROFIT_US' ), $
+ENDSTYLE
+ON TABLE SET HTMLCSS ON
+ON TABLE SET PAGE-NUM NOLEAD
+HEADING
+"Report &FOCFOCEXEC"
+" <REQUEST.FILTERS"
+END

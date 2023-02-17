@@ -1,0 +1,28 @@
+-*------------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-* This file is not to be edited by anyone without permission of product management.  *
+-*------------------------------------------------------------------------------------*
+-*FEX_DESCRIPTION=Education Decode Example
+DEFINE FILE _edahome/etc/app_templates/wf_retail/dimensions/wf_retail_education
+DISPLAY_VALUE/A30 = DECODE EDUCATION_DEGREE_SUBTYPE(
+              'Associate of Applied Science (AAS)' 'Undergraduate AAS'
+              'Associate of Arts (AA)' 'Undergraduate AA'
+              'Associate of Sciences (AS)' 'Undergraduate AS'
+              'Bachelor of Arts (BA)' 'Undergraduate BA'
+              'Bachelor of Science (BS)' 'Undergraduate BS'
+              'Doctor of Jurisprudence (JD) or Law' 'Graduate JD'
+              'Doctor of Medicine (MD)' 'Graduate MD'
+              'Doctor of Philosophy (PhD)' 'Graduate PhD'
+              'Doctor of Veterinary Medicine (DVM)' 'Graduate DVM'
+              'High School' 'High School'
+              'Master of Arts (MA)' 'Graduate MA'
+              'Master of Fine Arts (MFA)' 'Graduate MFA'
+              'Master of Sciences (MS)' 'Graduate MS'
+              'No High School' 'No School'
+              'Non Traditional Degree' 'Non Traditional'
+              'Technical or Vocational School' 'VoEd School'
+              ELSE 'ERROR Unknown Value') ;
+END
+TABLE FILE _edahome/etc/app_templates/wf_retail/dimensions/wf_retail_education BY EDUCATION_DEGREE_SUBTYPE BY DISPLAY_VALUE ON TABLE PCHOLD FORMAT XML ON TABLE SET HOLDLIST PRINTONLY ON TABLE SET MESSAGE OFF
+END

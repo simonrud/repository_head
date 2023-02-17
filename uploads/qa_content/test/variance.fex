@@ -1,0 +1,39 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Variances
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+DEFINE FILE qa_repository_head/uploads/qa_content/wf_retail_lite ADD
+ TIME_YEAR_GROUP/I6 TITLE 'Year,Group'=IF TIME_YEAR IN (2008
+, 2009
+, 2010
+, 2011) THEN 0
+ELSE IF TIME_YEAR IN (2012
+, 2013
+, 2014) THEN 1
+ELSE TIME_YEAR;
+END
+TABLE FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ SUM
+   SUM.COGS_US
+   COMPUTE COGS_US_VARIANCE/D20.2M TITLE 'Cost of Goods,Previous Value'=PARTITION_REF(SUM.COGS_US, TABLE, -1);
+   COMPUTE COGS_US_VARIANCE1/D12.2 TITLE 'Cost of Goods,Variance'=SUM.COGS_US - PARTITION_REF(SUM.COGS_US, TABLE, -1);
+   COMPUTE COGS_US_VARIANCE2/D12.2p TITLE 'Cost of Goods,Percent Variance'=( SUM.COGS_US - PARTITION_REF(SUM.COGS_US, TABLE, -1) ) / PARTITION_REF(SUM.COGS_US, TABLE, -1);
+   BY WF_RETAIL_TIME_SALES.TIME_QTR
+   BY WF_RETAIL_TIME_SALES.TIME_MTH
+ ON TABLE SET STYLE *
+  INCLUDE=_edahome/etc/ENID_Warm, $
+ ENDSTYLE
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT HTML
+ HEADING
+  "Report &FOCFOCEXEC"
+  " <REQUEST.FILTERS"
+END

@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_CUSTOMER_SS2, 
+   TABLENAME=wrd_wf_retail_customer_ss2, 
+   CONNECTION=CON1, 
+   KEY=ID_CUSTOMER, $

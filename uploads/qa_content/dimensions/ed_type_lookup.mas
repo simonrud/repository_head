@@ -1,0 +1,7 @@
+FILENAME=ED_TYPE_LOOKUP, SUFFIX=COMT    ,
+ DATASET=qa_repository_head/uploads/qa_content/dimensions/ed_type_lookup.csv,
+ REMARKS='Education Type LookupHold MFD, format COMT', $
+  SEGMENT=ED_TYPE_LOOKUP, SEGTYPE=S2, $
+    FIELDNAME=EDUCATION_DEGREE_TYPE, ALIAS=E01, USAGE=A30V, ACTUAL=A30V,
+      MISSING=ON, $
+    FIELDNAME=DISPLAY_VALUE, ALIAS=E02, USAGE=A20V, ACTUAL=A20V, $

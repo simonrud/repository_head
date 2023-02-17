@@ -1,0 +1,16 @@
+ SEGNAME=WF_RETAIL_STORE, 
+   TABLENAME=wrd_wf_retail_store, 
+   CONNECTION=CON1, 
+   KEY=ID_STORE, $
+  FOREIGN_KEY=wrd_store_id_geography_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_geography, 
+     FOREIGN_KEY_COLUMN=ID_GEOGRAPHY, 
+     PRIMARY_KEY_COLUMN=ID_GEOGRAPHY, $
+  FOREIGN_KEY=wrd_store_id_open_date_time_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_time, 
+     FOREIGN_KEY_COLUMN=ID_OPEN_DATE, 
+     PRIMARY_KEY_COLUMN=ID_TIME, $
+  FOREIGN_KEY=wrd_store_id_close_date_time_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_time, 
+     FOREIGN_KEY_COLUMN=ID_CLOSE_DATE, 
+     PRIMARY_KEY_COLUMN=ID_TIME, $

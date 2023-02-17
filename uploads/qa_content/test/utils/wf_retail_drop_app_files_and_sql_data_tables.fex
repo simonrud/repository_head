@@ -1,0 +1,42 @@
+-*DM_JOB_TYPE=0                                                                 
+-*DM_REQ_DESC=Tutorial Drop                                                     
+EX qa_repository_head/uploads/qa_content/test/utils/wf_retail_drop_sql_data_tables
+APP CREATE qa_repository_head/uploads/qa_content/bv_inheritance_examples IFNEXIST
+APP CREATE qa_repository_head/uploads/qa_content/bv_namespace_on IFNEXIST       
+APP DELETE qa_repository_head/uploads/qa_content/dimensions qa_repository_head/uploads/qa_content/facts qa_repository_head/uploads/qa_content/bv_inheritance_examples qa_repository_head/uploads/qa_content/bv_namespace_on ALL
+APP CREATE qa_repository_head/uploads/qa_content/profiles IFNEXIST              
+APP CREATE qa_repository_head/uploads/qa_content/python IFNEXIST                
+APP CREATE qa_repository_head/uploads/qa_content/rserver IFNEXIST               
+EX EDADEL FOCEXEC,qa_repository_head/uploads/qa_content/profiles/wf_retail_profile,IFEXIST
+EX EDADEL FOCEXEC,qa_repository_head/uploads/qa_content/profiles/wf_retail_profile,IFEXIST
+EX EDADEL MASTER ,qa_repository_head/uploads/qa_content/profiles/entitlement_product,IFEXIST
+EX EDADEL ACCESS ,qa_repository_head/uploads/qa_content/profiles/entitlement_product,IFEXIST
+EX EDADEL MASTER ,qa_repository_head/uploads/qa_content/profiles/wf_retail_product,IFEXIST
+EX EDADEL ACCESS ,qa_repository_head/uploads/qa_content/profiles/wf_retail_product,IFEXIST
+EX EDADEL sql    ,qa_repository_head/uploads/qa_content/profiles/wf_retail_product,IFEXIST
+EX EDADEL MASTER ,qa_repository_head/uploads/qa_content/profiles/wf_retail_datasec_product,IFEXIST
+EX EDADEL ACCESS ,qa_repository_head/uploads/qa_content/profiles/wf_retail_datasec_product,IFEXIST
+EX EDADEL sql    ,qa_repository_head/uploads/qa_content/profiles/wf_retail_datasec_product,IFEXIST
+EX EDADEL json   ,qa_repository_head/uploads/qa_content/uploads/population_demo_json,IFEXIST
+EX EDADEL csv    ,qa_repository_head/uploads/qa_content/uploads/sales_orders_csv,IFEXIST
+EX EDADEL csv    ,qa_repository_head/uploads/qa_content/uploads/sales_orders_mispelled_cities,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/join_demo,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/nls_country_demo,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/pivot_demo,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/populationchange,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/sales_orders,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/target_accounts,IFEXIST
+EX EDADEL xlsx   ,qa_repository_head/uploads/qa_content/uploads/retail_cross,IFEXIST
+SET EMGSRV = OFF                                                                
+APP DELETE qa_repository_head/uploads/qa_content/uploads                        
+APP DELETE qa_repository_head/uploads/qa_content/profiles ALL                   
+APP DELETE qa_repository_head/uploads/qa_content/test ALL                       
+APP DELETE qa_repository_head/uploads/qa_content/dm ALL                         
+APP DELETE qa_repository_head/uploads/qa_content/python ALL                     
+APP DELETE qa_repository_head/uploads/qa_content/rserver ALL                    
+APP DELETEFILE qa_repository_head/uploads/qa_content wf_retail* MASTER          
+SET EMGSRV = ON                                                                 
+-RUN                                                                            
+-TYPE1                                                                          
+-SET &STRING = '''qa_repository_head/uploads/qa_content'' WebFOCUS Retail' ;    
+-SET &MSG = EMGPUT(18663,1,&STRING.LENGTH,&STRING,0,'',0,'',256,A256);          

@@ -1,0 +1,28 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Country Costs with Filtering
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+SET EMGSRV=OFF
+ EX qa_repository_head/uploads/qa_content/test/xcmp/wf_retail_lite_share_pcategory
+SET EMGSRV=ON
+ENGINE INT SET FCA ON
+SET SHORTPATH=SQL
+TABLE FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ HEADING
+  "Report &FOCFOCEXEC"
+ WRITE
+   SUM.COGS_US
+   BY WF_RETAIL_GEOGRAPHY_CUSTOMER.COUNTRY_NAME
+ WHERE PRODUCT_CATEGORY_WHERE EQ 1;
+ ON TABLE SET STYLE *
+  INCLUDE=_EDAHOME/etc/Warm, $
+ ENDSTYLE
+ ON TABLE SET PAGE NOPAGE
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT HTML
+END

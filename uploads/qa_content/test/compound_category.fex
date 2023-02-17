@@ -1,0 +1,149 @@
+-*DM_JOB_TYPE=128
+-*DM_REQ_DESC=Three Part Compound
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+XCOMPOUND LAYOUT
+MULTIFRAME_LAYOUT=' \
+{ \
+  "wcSN":48, \
+"wcThemeIndex":0, \
+  "wcModified":false, \
+  "wcLayout":{ \
+  "wcItemType":"container", \
+  "wcOrientation":"R", \
+  "wcContainerFlags":0, \
+  "wcLayoutID":"L1", \
+  "wcHeight":418, \
+  "wcWidth":1124, \
+  "wcLayoutItems":[ \
+  { \
+      "wcItemType":"container", \
+      "wcOrientation":"H", \
+      "wcContainerFlags":0, \
+      "wcLayoutID":"L3", \
+      "wcHeight":210, \
+      "wcWidth":1124, \
+      "wcCurrentSize":0.00, \
+      "wcLayoutItems":[ \
+      { \
+        "wcItemType":"frame", \
+        "wcFrameType":"T", \
+        "wcFrameID":"LF4", \
+        "wcActiveID":"4", \
+        "wcHeight":210, \
+        "wcWidth":374, \
+        "wcCurrentSize":33.27, \
+        "wcItems":[ \
+        { \
+          "wcItemType":"content", \
+          "wcContentID":"4", \
+        "wcHeight":210, \
+        "wcWidth":374, \
+        "wcData":"qa_repository_head/uploads/qa_content/test/category_year_report.fex" \
+        }] \
+      }, \
+      { \
+        "wcItemType":"frame", \
+        "wcFrameType":"T", \
+        "wcFrameID":"F1", \
+        "wcActiveID":"5", \
+        "wcHeight":210, \
+        "wcWidth":374, \
+        "wcCurrentSize":33.27, \
+        "wcItems":[ \
+        { \
+          "wcItemType":"content", \
+          "wcContentID":"5", \
+        "wcHeight":210, \
+        "wcWidth":374, \
+        "wcData":"qa_repository_head/uploads/qa_content/test/category_report.fex" \
+        }] \
+      }, \
+      { \
+        "wcItemType":"frame", \
+        "wcFrameType":"T", \
+        "wcFrameID":"F2", \
+        "wcActiveID":"6", \
+        "wcHeight":210, \
+        "wcWidth":375, \
+        "wcCurrentSize":33.36, \
+        "wcItems":[ \
+        { \
+          "wcItemType":"content", \
+          "wcContentID":"6", \
+        "wcHeight":210, \
+        "wcWidth":374, \
+        "wcData":"qa_repository_head/uploads/qa_content/test/category_chart.fex" \
+        }] \
+      } \
+      ] \
+  } \
+  ] \
+  }, \
+  "wcFramesInfo":[ \
+        { \
+          "wcFrameID":"LF4", \
+          "wcNotServerID":true, \
+          "wcFrameClass":"LF4", \
+          "wcFrameFlags":0, \
+          "wcFrameLabel":"" \
+        }, \
+        { \
+          "wcFrameID":"F1", \
+          "wcNotServerID":true, \
+          "wcFrameClass":"F1", \
+          "wcFrameFlags":0, \
+          "wcFrameLabel":"" \
+        }, \
+        { \
+          "wcFrameID":"F2", \
+          "wcNotServerID":true, \
+          "wcFrameClass":"F2", \
+          "wcFrameFlags":0, \
+          "wcFrameLabel":"" \
+        }], \
+  "wcContentsInfo":[ \
+        { \
+          "wcContentID":"4", \
+          "wcNotServerID":true,"wcContentFlags":0, \
+          "wcContentTitle":"category_year_report", \
+          "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/category_year_report.fex", \
+          "wcParams": \
+          { \
+            "_paramN":[], \
+            "_paramV":[] \
+          } \
+        }, \
+        { \
+          "wcContentID":"5", \
+          "wcNotServerID":true,"wcContentFlags":0, \
+          "wcContentTitle":"category_report", \
+          "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/category_report.fex", \
+          "wcParams": \
+          { \
+            "_paramN":[], \
+            "_paramV":[] \
+          } \
+        }, \
+        { \
+          "wcContentID":"6", \
+          "wcNotServerID":true,"wcContentFlags":0, \
+          "wcContentTitle":"category_chart", \
+          "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/category_chart.fex", \
+          "wcParams": \
+          { \
+            "_paramN":[], \
+            "_paramV":[] \
+          } \
+        }]} \
+', $
+COMPONENT=4, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/category_year_report.fex, $
+COMPONENT=5, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/category_report.fex, $
+COMPONENT=6, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/category_chart.fex, $
+END
+XCOMPOUND END

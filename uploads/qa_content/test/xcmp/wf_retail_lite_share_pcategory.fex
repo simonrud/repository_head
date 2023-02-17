@@ -1,0 +1,10 @@
+-*DM_JOB_TYPE=16384
+-*DM_REQ_DESC=Product Category (SHARED)
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+SET SHORTPATH=SQL
+DEFINE FILE qa_repository_head/uploads/qa_content/wf_retail_lite ADD
+ PRODUCT_CATEGORY_WHERE/I1 TITLE 'Product,Category,Filter'=PRODUCT_CATEGORY EQ 'Accessories' OR 'Camcorder' OR 'Computers' OR 'Media Player' OR 'Stereo Systems' OR 'Televisions' ;
+END

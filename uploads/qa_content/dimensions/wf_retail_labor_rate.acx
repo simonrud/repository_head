@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_LABOR_RATE, 
+   TABLENAME=wrd_wf_retail_labor_rate, 
+   CONNECTION=CON1, 
+   KEY=ID_LABOR_RATE, $

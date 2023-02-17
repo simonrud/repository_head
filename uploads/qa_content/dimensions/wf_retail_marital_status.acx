@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_MARITAL_STATUS, 
+   TABLENAME=wrd_wf_retail_marital_status, 
+   CONNECTION=CON1, 
+   KEY=ID_MARITAL_STATUS, $

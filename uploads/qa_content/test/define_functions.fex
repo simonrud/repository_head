@@ -1,0 +1,20 @@
+-*DM_JOB_TYPE=512
+-*DM_REQ_DESC=Sample Functions
+-*-----------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------*
+DEFINE FUNCTION DMDATFMT DESCRIPTION 'Convert date to 2008-JUL-04 format'(INDATE/YYMD DESCRIPTION 'Date in YYYY/MM/DD Format' INPUTFIELD ON)
+-*Convert date to 2008-JUL-04 format
+-*DMDATFMT (INDATE)
+-*INDATE is 2008/07/04
+-*result is 2008-JUL-04
+ DMDATFMT/A27V=DT_FORMAT( INDATE, 'YY-MTD' );
+END
+DEFINE FUNCTION DMPROPER DESCRIPTION 'Convert name to proper case as Last, First'(LASTNAME/A17 DESCRIPTION 'A character string containing a last name' INPUTFIELD ON,
+FIRSTNAME/A14 DESCRIPTION 'A character string containing a first name' INPUTFIELD ON)
+-*Convert name to proper case as Last, First
+-*DMPROPER ('COHEN','GERRY')
+-*result is: 'Cohen, Gerry'
+ DMPROPER/A34V=INITCAP( LASTNAME ) || (', ' | INITCAP( FIRSTNAME ));
+END

@@ -1,0 +1,8 @@
+ SEGNAME=WF_RETAIL_VENDOR, 
+   TABLENAME=wrd_wf_retail_vendor, 
+   CONNECTION=CON1, 
+   KEY=ID_VENDOR, $
+  FOREIGN_KEY=wrd_vendor_id_geography_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_geography, 
+     FOREIGN_KEY_COLUMN=ID_GEOGRAPHY, 
+     PRIMARY_KEY_COLUMN=ID_GEOGRAPHY, $

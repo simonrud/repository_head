@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_CUSTOMER_MISSINGDATA, 
+   TABLENAME=wrd_wf_retail_customer_missingdata, 
+   CONNECTION=CON1, 
+   KEY=ID_CUSTOMER, $

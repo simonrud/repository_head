@@ -1,0 +1,38 @@
+-*DM_JOB_TYPE=8192
+-*DM_REQ_DESC=Create Sales Extract
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+TABLE FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ PRINT
+   COGS_LOCAL
+   COGS_US
+   DISCOUNT_LOCAL
+   DISCOUNT_US
+   GROSS_PROFIT_LOCAL
+   GROSS_PROFIT_US
+   MSRP_LOCAL
+   MSRP_US
+   QUANTITY_SOLD
+   REVENUE_LOCAL
+   REVENUE_US
+   BY WF_RETAIL_TIME_SALES.TIME_YEAR
+   BY WF_RETAIL_TIME_SALES.TIME_QTR
+   BY WF_RETAIL_TIME_SALES.TIME_MTH
+   BY WF_RETAIL_SALES.ID_SALES
+ ON TABLE SET PARTITIONING PARALLEL
+ ON TABLE SET HOLDATTRS CUBE
+ ON TABLE SET HOLDLIST NOFOCLIST
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE HOLD
+  AS qa_repository_head/uploads/qa_content/test/wfr_sales_extract
+  DATASET 'wfr_sales_extract'
+  FORMAT DATREC
+ HEADING
+  "Report &FOCFOCEXEC"
+ WHERE MSRP_US FROM 999.00 TO 1999.99;
+END

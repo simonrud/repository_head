@@ -1,0 +1,10 @@
+$ Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+$ @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+ SEGNAME=WF_RETAIL_PRODUCT, 
+   TABLENAME=wrd_wf_retail_product, 
+   CONNECTION=CON1, 
+   KEY=ID_PRODUCT, $
+  FOREIGN_KEY=product_id_vendor_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_vendor, 
+     FOREIGN_KEY_COLUMN=ID_VENDOR, 
+     PRIMARY_KEY_COLUMN=ID_VENDOR, $

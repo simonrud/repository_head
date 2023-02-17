@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_AGE, 
+   TABLENAME=wrd_wf_retail_age, 
+   CONNECTION=CON1, 
+   KEY=ID_AGE, $

@@ -1,0 +1,88 @@
+-*DM_JOB_TYPE=0
+-*DM_REQ_DESC=Tutorial Load Validator
+-DEFAULT &LOADTYPE = 'Small' ;
+-DEFAULT &CMAPP = 'qa_repository_head/uploads/qa_content' ;
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+-*Array of Table Names in WF Retail tutorial database
+-SET &TABLES= 'dimensions/age,dimensions/currency,dimensions/customer,dimensions/customer_missingdata,dimensions/discount,dimensions/education,dimensions/education_missingrecs,dimensions/employee,dimensions/geography,dimensions/income,dimensions/industry,facts/labor,dimensions/labor_rate,dimensions/marital_status,dimensions/occupation,dimensions/product,facts/sales,facts/shipments,dimensions/shipping_options,dimensions/store,dimensions/time,dimensions/time_lite,dimensions/vendor';
+-*Array of Number of expected number of records for each table in &TABLES
+-SET &EXP_RECORDS_L = '87,25,378498,189880,8,16,4,8701,156086,44,20,62221,12,5,10,159,2488361,759929,20,87,6575,2271,30';
+-SET &EXP_RECORDS_M = '87,25,9970,4946,8,16,4,8701,9693,44,20,10000,12,5,10,159,10000,10000,20,87,6575,2271,30';
+-SET &EXP_RECORDS_S = '3,2,3,1,5,7,4,19,18,2,3,30,2,2,5,28,32,9,6,4,62,61,11';
+-SET &EXP_RECORDS = IF &LOADTYPE EQ 'Medium' THEN &EXP_RECORDS_M ELSE IF &LOADTYPE EQ 'Small' THEN &EXP_RECORDS_S ELSE &EXP_RECORDS_L;
+-*Determine number of tables in arrays
+-SET &NUM_TABLES = 0;
+-REPEAT NUMTABLES WHILE TOKEN(&TABLES,',',&NUM_TABLES + 1) NE '';
+-SET &NUM_TABLES = &NUM_TABLES + 1;
+-NUMTABLES
+-? SET MESSAGE &MESSAGE_DEFAULT
+-? SET PANEL &PANEL_DEFAULT
+-? SET COUNTWIDTH &COUNTWIDTH_DEFAULT
+SET MESSAGE = OFF
+SET PANEL = 132
+SET COUNTWIDTH = 8
+-*Count Number of Records in Each Table and Hold results
+-REPEAT GEN_HOLDS FOR &TABNUM FROM 1 TO &NUM_TABLES STEP 1
+-SET &TABLESIZE.&TABNUM = TOKEN(&EXP_RECORDS,',',&TABNUM);
+-SET &TABLENAME = TOKEN(LOWER(&TABLES),',', &TABNUM)  ;
+-SET &SUBDIR = TOKEN(LOWER(&TABLENAME),'/',1)  ;
+-SET &WF_FILENAME.&TABNUM = &SUBDIR || '/' || 'wf_' || 'retail_' ||  TOKEN(LOWER(&TABLENAME),'/', -1) ;
+TABLE FILE &CMAPP/&WF_FILENAME.&TABNUM
+COUNT *
+ON TABLE SET SHORTPATH SQL
+ON TABLE HOLD AS wfrhold&TABNUM FORMAT ALPHA
+END
+-RUN
+-IF &FOCERRNUM NE 0 THEN GOTO :TABLENOTFOUND ELSE GOTO GEN_HOLDS;
+-:TABLENOTFOUND
+TABLE FILE _edahome/catalog/sysapps COUNT FNAME WHERE RECORDLIMIT EQ 1 ;
+ON TABLE HOLD AS wfrhold&TABNUM FORMAT ALPHA
+END
+EX EDAPUT FOCTEMP,wfrhold&TABNUM,C,FILE,0
+-GEN_HOLDS
+-*Generate DEFINEs for display of load status
+-REPEAT GEN_DEFINES FOR &TABNUM FROM 1 TO &NUM_TABLES STEP 1
+DEFINE FILE wfrhold&TABNUM
+ACTUAL/I11C = E01;
+EXPECTED/I11C = &TABLESIZE.&TABNUM;
+LOADSTATUS/A10V = IF ACTUAL EQ EXPECTED THEN 'Success ' ELSE 'Error';
+TABLENAME/A42V = '&WF_FILENAME.&TABNUM' ;
+SD/A12 = GETTOK(TABLENAME, 42, 1, '/', 12, 'A12');
+TN/A30 = GETTOK(TABLENAME, 42, 2, '/', 30, 'A12');
+END
+-GEN_DEFINES
+-*Generate report concatenating results from each hold file
+-REPEAT GEN_REPORT FOR &TABNUM FROM 1 TO &NUM_TABLES STEP 1
+-IF &TABNUM GT 1 GOTO CONCATENATE;
+TABLE FILE wfrhold&TABNUM
+"WF Retail Tutorial &LOADTYPE Database Load Validation Report"
+" "
+PRINT
+ TABLENAME AS 'Table Name'
+ LOADSTATUS AS 'Load Status'
+ EXPECTED AS 'Expected,Number of, Records Loaded'
+ ACTUAL AS 'Actual, Number of, Records Loaded'
+BY HIGHEST SD NOPRINT BY TN NOPRINT
+ON TABLE SET SHORTPATH SQL
+ON TABLE SET PAGE OFF
+ON TABLE SET STYLE *
+	INCLUDE = endeflt,$
+	TYPE=DATA, BACKCOLOR='RED', WHEN= ACTUAL NE EXPECTED,$
+ENDSTYLE
+-GOTO GEN_REPORT
+-CONCATENATE
+MORE
+FILE wfrhold&TABNUM
+-GEN_REPORT
+END
+SET EMGSRV = OFF
+APP DELETEFILE _edatemp wfrhold* MASTER
+APP DELETEFILE _edatemp wfrhold* FOCTEMP
+APP DELETEFILE _edatemp focsort  FOCUS
+SET EMGSRV = ON
+SET MESSAGE = &MESSAGE_DEFAULT
+SET PANEL = &PANEL_DEFAULT
+SET COUNTWIDTH = &COUNTWIDTH_DEFAULT

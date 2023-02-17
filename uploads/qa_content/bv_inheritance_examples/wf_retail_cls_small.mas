@@ -1,0 +1,12 @@
+$ Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+$ @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+FILENAME=WF_RETAIL_BVP_CLS,
+ REMARKS='Sales and Customers', $
+  SEGMENT=WF_RETAIL_SALES, CRFILE=qa_repository_head/uploads/qa_content/bv_inheritance_examples/wf_retail_sales_base, CRINCLUDE=ALL,
+    DESCRIPTION='Sales Fact', $
+  SEGMENT=WF_RETAIL_PRODUCT, SEGTYPE=KU, PARENT=WF_RETAIL_SALES, CRFILE=qa_repository_head/uploads/qa_content/bv_inheritance_examples/wf_retail_product_base, CRINCLUDE=ALL,
+    JOIN_WHERE=WF_RETAIL_SALES.ID_PRODUCT EQ WF_RETAIL_PRODUCT.ID_PRODUCT;,
+    DESCRIPTION='Product Dimension', $
+  SEGMENT=WF_RETAIL_CUSTOMER, SEGTYPE=KU, PARENT=WF_RETAIL_SALES, CRFILE=qa_repository_head/uploads/qa_content/bv_inheritance_examples/wf_retail_customer_geography_base, CRINCLUDE=ALL,
+    JOIN_WHERE=WF_RETAIL_SALES.ID_CUSTOMER EQ WF_RETAIL_CUSTOMER.ID_CUSTOMER;,
+    DESCRIPTION='Customer Dimension(ID Customer)', $

@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_INCOME, 
+   TABLENAME=wrd_wf_retail_income, 
+   CONNECTION=CON1, 
+   KEY=ID_INCOME, $

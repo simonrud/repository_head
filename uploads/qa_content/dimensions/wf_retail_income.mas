@@ -1,0 +1,22 @@
+$ Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+FILENAME=WF_RETAIL_INCOME, SUFFIX=SQLPSTGR, TRANS_FILE=_EDAHOME/NLS/dt, BV_NAMESPACE=OFF,
+ REMARKS='IncomeHold MFD, format BINARY', $
+  SEGMENT=WF_RETAIL_INCOME, SEGTYPE=S0,
+    DESCRIPTION='Income Dimension', $
+    FIELDNAME=ID_INCOME, ALIAS=ID_INCOME, USAGE=I9, ACTUAL=I4,
+      TITLE='ID Income', DESCRIPTION='Primary Key', $
+    FIELDNAME=HOUSEHOLD_SIZE, ALIAS=HOUSEHOLD_SIZE, USAGE=D20.2, ACTUAL=D8,
+      MISSING=ON,
+      TITLE='Household,Size', DESCRIPTION='Average Household Size', $
+    FIELDNAME=HOUSEHOLDS, ALIAS=HOUSEHOLDS, USAGE=I11, ACTUAL=I4,
+      MISSING=ON,
+      TITLE='Households', DESCRIPTION='Number of Households in Income Range', $
+    FIELDNAME=INCOME_RANGE, ALIAS=INCOME_RANGE, USAGE=A30V, ACTUAL=A30V,
+      MISSING=ON,
+      TITLE='Customer,Income Range', DESCRIPTION='Customer Income Range', $
+    FIELDNAME=INCOME_SUBRANGE, ALIAS=INCOME_SUBRANGE, USAGE=A30V, ACTUAL=A30V,
+      MISSING=ON,
+      TITLE='Customer,Income Subrange', DESCRIPTION='Customer Income Subrange', $
+    FIELDNAME=NUM_EARNERS, ALIAS=NUM_EARNERS, USAGE=D20.2, ACTUAL=D8,
+      MISSING=ON,
+      TITLE='Number of,Earners', DESCRIPTION='Number of Earners in a Household', $

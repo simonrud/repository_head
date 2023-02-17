@@ -1,0 +1,149 @@
+-*DM_JOB_TYPE=128
+-*DM_REQ_DESC=Three Frame Graph / Report
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+XCOMPOUND LAYOUT
+MULTIFRAME_LAYOUT=' \
+{ \
+  "wcSN":27, \
+  "wcThemeIndex":0, \
+  "wcModified":false, \
+  "wcLayout":{ \
+  "wcItemType":"container", \
+  "wcOrientation":"H", \
+  "wcContainerFlags":0, \
+  "wcLayoutID":"L1", \
+  "wcHeight":674, \
+  "wcWidth":1228, \
+  "wcLayoutItems":[ \
+  { \
+      "wcItemType":"container", \
+      "wcOrientation":"V", \
+      "wcContainerFlags":0, \
+      "wcLayoutID":"L2", \
+      "wcHeight":674, \
+      "wcWidth":613, \
+      "wcCurrentSize":0.00, \
+      "wcLayoutItems":[ \
+      { \
+        "wcItemType":"frame", \
+        "wcFrameType":"T", \
+        "wcFrameID":"LF1", \
+        "wcActiveID":"2", \
+        "wcHeight":336, \
+        "wcWidth":613, \
+        "wcCurrentSize":49.85, \
+        "wcItems":[ \
+        { \
+          "wcItemType":"content", \
+          "wcContentID":"2", \
+        "wcHeight":336, \
+        "wcWidth":613, \
+        "wcData":"qa_repository_head/uploads/qa_content/test/xcmp/customer_country_top5.fex" \
+        }] \
+      }, \
+      { \
+        "wcItemType":"frame", \
+        "wcFrameType":"T", \
+        "wcFrameID":"F2", \
+        "wcActiveID":"4", \
+        "wcHeight":337, \
+        "wcWidth":613, \
+        "wcCurrentSize":50.00, \
+        "wcItems":[ \
+        { \
+          "wcItemType":"content", \
+          "wcContentID":"4", \
+        "wcHeight":336, \
+        "wcWidth":613, \
+        "wcData":"qa_repository_head/uploads/qa_content/test/xcmp/model_top5.fex" \
+        }] \
+      } \
+      ] \
+  }, \
+  { \
+    "wcItemType":"frame", \
+    "wcFrameType":"T", \
+    "wcFrameID":"F1", \
+    "wcActiveID":"3", \
+    "wcHeight":674, \
+    "wcWidth":614, \
+    "wcCurrentSize":50.00, \
+    "wcItems":[ \
+    { \
+      "wcItemType":"content", \
+      "wcContentID":"3", \
+    "wcHeight":674, \
+    "wcWidth":614, \
+    "wcData":"qa_repository_head/uploads/qa_content/test/xcmp/full_name_top5.fex" \
+    }] \
+  } \
+  ] \
+  }, \
+  "wcFramesInfo":[ \
+        { \
+          "wcFrameID":"LF1", \
+          "wcNotServerID":true, \
+          "wcFrameClass":"LF1", \
+          "wcFrameFlags":0, \
+          "wcFrameLabel":"" \
+        }, \
+        { \
+          "wcFrameID":"F2", \
+          "wcNotServerID":true, \
+          "wcFrameClass":"F2", \
+          "wcFrameFlags":0, \
+          "wcFrameLabel":"" \
+        }, \
+    { \
+      "wcFrameID":"F1", \
+      "wcNotServerID":true, \
+      "wcFrameClass":"F1", \
+      "wcFrameFlags":0, \
+      "wcFrameLabel":"" \
+    }], \
+  "wcContentsInfo":[ \
+        { \
+          "wcContentID":"2", \
+          "wcNotServerID":true,"wcContentFlags":0, \
+          "wcContentTitle":"customer_country_top5", \
+          "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/xcmp/customer_country_top5.fex", \
+          "wcParams": \
+          { \
+            "_paramN":[], \
+            "_paramV":[] \
+          } \
+        }, \
+        { \
+          "wcContentID":"4", \
+          "wcNotServerID":true,"wcContentFlags":0, \
+          "wcContentTitle":"model_top5", \
+          "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/xcmp/model_top5.fex", \
+          "wcParams": \
+          { \
+            "_paramN":[], \
+            "_paramV":[] \
+          } \
+        }, \
+    { \
+      "wcContentID":"3", \
+      "wcNotServerID":true,"wcContentFlags":0, \
+      "wcContentTitle":"full_name_top5", \
+      "wcContentTooltip":"qa_repository_head/uploads/qa_content/test/xcmp/full_name_top5.fex", \
+      "wcParams": \
+      { \
+        "_paramN":[], \
+        "_paramV":[] \
+      } \
+    }]} \
+', $
+COMPONENT=2, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/xcmp/customer_country_top5.fex, $
+COMPONENT=3, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/xcmp/full_name_top5.fex, $
+COMPONENT=4, TYPE=REPORT,
+FOCEXEC=qa_repository_head/uploads/qa_content/test/xcmp/model_top5.fex, $
+END
+XCOMPOUND END

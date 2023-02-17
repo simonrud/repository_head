@@ -1,0 +1,4 @@
+ SEGNAME=WRD_WF_RW_DBMS_ACCESS_CHECKING, 
+   TABLENAME=wrd_wf_rw_dbms_access_checking, 
+   CONNECTION=CON1, 
+   KEY=RW_ACCESS_CHECK, $

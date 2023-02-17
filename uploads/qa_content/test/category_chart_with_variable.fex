@@ -1,0 +1,41 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Category Chart With Variable
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+-SET &increase = 2;
+-DEFAULT &increase = '1'
+-TYPE &increase.increase , for example  1.
+GRAPH FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ SUM
+   SUM.GROSS_PROFIT_US
+   COMPUTE BIGGER_PROFIT/D12.2 TITLE 'bigger_profit'=GROSS_PROFIT_US * &increase;
+   BY PRODUCT_CATEGORY
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT JSCHART
+ ON TABLE SET LOOKGRAPH BAR
+ ON TABLE SET HTMLENCODE ON
+ ON TABLE SET GRAPHDEFAULT OFF
+ ON TABLE SET AUTOFIT ON
+ ON TABLE SET EMBEDHEADING ON
+ ON TABLE SET STYLE *
+  INCLUDE=_edahome/etc/ENID_Warm, $
+  TYPE=REPORT, CHART-ORIENTATION=HORIZONTAL, $
+  TYPE=DATA, COLUMN=N2, /*SUM.GROSS_PROFIT_US*/
+   BUCKET=Y-AXIS, $
+  TYPE=DATA, COLUMN=N3, /*BIGGER_PROFIT*/
+   BUCKET=Y-AXIS, $
+  TYPE=DATA, COLUMN=N1, /*PRODUCT_CATEGORY*/
+   BUCKET=X-AXIS, $
+ ENDSTYLE
+ HEADING
+  "Report &FOCFOCEXEC"
+  " <REQUEST.FILTERS"
+ WHERE PRODUCT_CATEGORY EQ 'Accessories' OR 'Camcorder';
+END

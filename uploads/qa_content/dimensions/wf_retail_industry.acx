@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_INDUSTRY, 
+   TABLENAME=wrd_wf_retail_industry, 
+   CONNECTION=CON1, 
+   KEY=ID_INDUSTRY, $

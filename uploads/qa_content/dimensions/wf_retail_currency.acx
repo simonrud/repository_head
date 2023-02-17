@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_CURRENCY, 
+   TABLENAME=wrd_wf_retail_currency, 
+   CONNECTION=CON1, 
+   KEY=ID_CURRENCY, $

@@ -1,0 +1,11 @@
+-*DM_JOB_TYPE=16384
+-*DM_REQ_DESC=Shared DEFINE (WFR Lite)
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+DEFINE FILE qa_repository_head/uploads/qa_content/wf_retail_lite ADD
+ PRODUCT_CATEGORY_GROUP/A40V TITLE 'Product,Category,Group'=IF PRODUCT_CATEGORY IN ('Accessories','Camcorder','Computers','Media Player') THEN 'Accessories_and_others' ELSE 'default_group';
+ TIME_YEAR_WHERE/I1 TITLE 'Year,Filter'=WF_RETAIL_TIME_SALES.TIME_YEAR EQ _FOC_NULL;
+ SUM_COGS_US_WHERE_TOTAL/I1 ( AGGREGATABLE=YES , TITLE='SUM,Cost of Goods,Filter')=SUM.COGS_US FROM _FOC_NULL TO _FOC_NULL;
+END

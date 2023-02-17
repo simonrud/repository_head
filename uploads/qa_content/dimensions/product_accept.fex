@@ -1,0 +1,8 @@
+-*------------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-* This file is not to be edited by anyone without permission of product management.  *
+-*------------------------------------------------------------------------------------*
+-*FEX_DESCRIPTION=ACCEPT List Create
+TABLE FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_product PRINT ID_PRODUCT PRODUCT_NAME BY HIGHEST ID_PRODUCT NOPRINT ON TABLE PCHOLD FORMAT XML
+END

@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_EDUCATION, 
+   TABLENAME=wrd_wf_retail_education, 
+   CONNECTION=CON1, 
+   KEY=ID_EDUCATION, $

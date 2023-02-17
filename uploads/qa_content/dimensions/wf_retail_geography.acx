@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_GEOGRAPHY, 
+   TABLENAME=wrd_wf_retail_geography, 
+   CONNECTION=CON1, 
+   KEY=ID_GEOGRAPHY, $

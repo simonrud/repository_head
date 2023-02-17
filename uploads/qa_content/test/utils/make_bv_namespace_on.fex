@@ -1,0 +1,47 @@
+-SET &&ID_PRODUCT = ''' ''' ;
+APP CREATE qa_repository_head/uploads/qa_content/bv_namespace_on IFNEXIST
+APP CREATE qa_repository_head/uploads/qa_content/bv_namespace_on/advanced IFNEXIST
+-*DM_REQ_DESC=Make BV Name Space ON                                             
+NTMAS MESSAGES OFF                                                              
+NTMAS OPEN _edahome/etc/app_templates/wf_retail/bv_namespace_on/wf_retail_lite_on
+NTMAS REPLACE_PATH SUB_QRY|SEGM|ACCEPT qa_repository_head/uploads/qa_content -4 
+NTMAS DELETE STORE_LAYOUT_IMAGE FIELD                                           
+NTMAS WRITE qa_repository_head/uploads/qa_content/bv_namespace_on/wf_retail_lite_on
+NTMAS CLOSE                                                                     
+-RUN                                                                            
+NTMAS MESSAGES OFF                                                              
+NTMAS OPEN _edahome/etc/app_templates/wf_retail/bv_namespace_on/advanced/wf_retail_product_base
+NTMAS REFRESH_FLAGS SQLPSTGR CON1                                               
+NTMAS SET_PROP ROOT ROOT SUFFIX SQLPSTGR                                        
+NTMAS REPLACE_PATH SUB_QRY|SEGM|ACCEPT qa_repository_head/uploads/qa_content -4 
+NTMAS SET_PROP ; WF_RETAIL_PRODUCT SEGMENT TABLENAME 'wrd_wf_retail_product' ; WF_RETAIL_PRODUCT SEGMENT CONNECTION CON1
+NTMAS SET_PROP WF_RETAIL_PRODUCT SEGMENT PRIMARY_KEY_TABLE wrd_wf_retail_vendor 
+NTMAS TRANSFORM_FMT                                                             
+NTMAS WRITE qa_repository_head/uploads/qa_content/bv_namespace_on/advanced/wf_retail_product_base
+NTMAS CLOSE                                                                     
+-RUN                                                                            
+NTMAS MESSAGES OFF                                                              
+NTMAS OPEN _edahome/etc/app_templates/wf_retail/bv_namespace_on/advanced/wf_retail_cls_small
+NTMAS REPLACE_PATH SUB_QRY|SEGM|ACCEPT qa_repository_head/uploads/qa_content -4 
+NTMAS TRANSFORM_FMT                                                             
+NTMAS WRITE qa_repository_head/uploads/qa_content/bv_namespace_on/advanced/wf_retail_cls_small
+NTMAS CLOSE                                                                     
+-RUN                                                                            
+NTMAS MESSAGES OFF                                                              
+NTMAS OPEN _edahome/etc/app_templates/wf_retail/bv_namespace_on/advanced/wf_retail_sales_base
+NTMAS REFRESH_FLAGS SQLPSTGR CON1                                               
+NTMAS SET_PROP ROOT ROOT SUFFIX SQLPSTGR                                        
+NTMAS REPLACE_PATH SUB_QRY|SEGM|ACCEPT qa_repository_head/uploads/qa_content -4 
+NTMAS SET_PROP ; WF_RETAIL_SALES SEGMENT TABLENAME 'wrd_wf_retail_sales' ; WF_RETAIL_SALES SEGMENT CONNECTION CON1
+NTMAS SET_PROP_PREFIX WF_RETAIL_SALES SEGMENT PRIMARY_KEY_TABLE wrd_            
+NTMAS TRANSFORM_FMT                                                             
+NTMAS WRITE qa_repository_head/uploads/qa_content/bv_namespace_on/advanced/wf_retail_sales_base
+NTMAS CLOSE                                                                     
+-RUN                                                                            
+NTMAS MESSAGES OFF                                                              
+NTMAS OPEN _edahome/etc/app_templates/wf_retail/bv_namespace_on/advanced/wf_retail_customer_geography_base
+NTMAS REPLACE_PATH SUB_QRY|SEGM|ACCEPT qa_repository_head/uploads/qa_content -4 
+NTMAS TRANSFORM_FMT                                                             
+NTMAS WRITE qa_repository_head/uploads/qa_content/bv_namespace_on/advanced/wf_retail_customer_geography_base
+NTMAS CLOSE                                                                     
+-RUN                                                                            

@@ -1,0 +1,28 @@
+-*DM_JOB_TYPE=8192
+-*DM_REQ_DESC=Create Age to Results/Age
+-*-----------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+ENGINE SQLPSTGR SET BULKLOAD ON
+TABLE FILE qa_repository_head/uploads/qa_content/dimensions/wf_retail_age
+ PRINT
+   AGE
+   AGE_RANGE
+   AGE_GROUP
+   BY ID_AGE
+ ON TABLE SET HOLDATTRS CUBE
+ ON TABLE SET HOLDLIST NOFOCLIST
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE HOLD
+  NOKEYS
+  AS qa_repository_head/uploads/qa_content/dm/results/age_unkeyed
+  TABLENAME 'age_unkeyed'
+  CONNECTION 'CON1'
+  FORMAT SQLPSTGR
+ HEADING
+  "Report &FOCFOCEXEC"
+END

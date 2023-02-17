@@ -1,0 +1,16 @@
+ SEGNAME=WF_RETAIL_EMPLOYEE, 
+   TABLENAME=wrd_wf_retail_employee, 
+   CONNECTION=CON1, 
+   KEY=ID_EMPLOYEE, $
+  FOREIGN_KEY=wrd_employee_id_employee_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_employee, 
+     FOREIGN_KEY_COLUMN=ID_MANAGER, 
+     PRIMARY_KEY_COLUMN=ID_EMPLOYEE, $
+  FOREIGN_KEY=wrd_employee_id_education_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_education, 
+     FOREIGN_KEY_COLUMN=ID_EDUCATION, 
+     PRIMARY_KEY_COLUMN=ID_EDUCATION, $
+  FOREIGN_KEY=wrd_employee_id_occupation_fk, 
+     PRIMARY_KEY_TABLE=wrd_wf_retail_occupation, 
+     FOREIGN_KEY_COLUMN=ID_OCCUPATION, 
+     PRIMARY_KEY_COLUMN=ID_OCCUPATION, $

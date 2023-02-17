@@ -1,0 +1,4 @@
+ SEGNAME=WF_RETAIL_OCCUPATION, 
+   TABLENAME=wrd_wf_retail_occupation, 
+   CONNECTION=CON1, 
+   KEY=ID_OCCUPATION, $

@@ -1,0 +1,15 @@
+[DataFlow SourceTargetView]
+DataFlowChildWindow(sql) = 0,520,20,568,68,0,0
+DataFlowChildWindow(join:j5) = 0,440,20,488,68,0,0
+DataFlowChildWindow(join:j4) = 0,360,20,408,68,0,0
+DataFlowChildWindow(join:j3) = 0,280,20,328,68,0,0
+DataFlowChildWindow(join:j2) = 0,200,20,248,68,0,0
+DataFlowChildWindow(join:j1) = 0,120,20,168,68,0,0
+DataFlowChildWindow(src:wf_retail_customer:t1) = 0,40,20,88,68,0,0
+DataFlowChildWindow(src:wf_retail_age:t2) = 0,40,113,88,161,0,0
+DataFlowChildWindow(src:wf_retail_income:t3) = 0,120,113,168,161,0,0
+DataFlowChildWindow(src:wf_retail_education:t4) = 0,200,113,248,161,0,0
+DataFlowChildWindow(src:wf_retail_geography:t5) = 0,280,113,328,161,0,0
+DataFlowChildWindow(src:wf_retail_time:t7) = 0,360,113,408,161,0,0
+DataFlowChildWindow(trg:wfr_marketinglist:1) = 0,600,20,648,68,0,0
+GuiLayout = 1099511627904,{"wcSN":40,"wcThemeIndex":0,"wcModified":false,"wcLayout":{"wcItemType":"container","wcOrientation":"V","wcContainerFlags":0,"wcLayoutID":"L1","wcHeight":726,"wcWidth":1805,"wcLayoutItems":[{"wcItemType":"frame","wcFrameType":"S","wcFrameID":"MFLFrame","wcActiveID":"MFLeftContent","wcHeight":356,"wcWidth":1805,"wcInitialSize":"33","wcCurrentSize":48.98,"wcItems":[{"wcItemType":"content","wcContentID":"MFLeftContent","wcHeight":347,"wcWidth":1801}]},{"wcItemType":"container","wcOrientation":"H","wcContainerFlags":0,"wcLayoutID":"L2","wcHeight":363,"wcWidth":1805,"wcInitialSize":"67","wcCurrentSize":0.00,"wcLayoutItems":[{"wcItemType":"frame","wcFrameType":"S","wcFrameID":"MFDataFlowEditorFrame","wcActiveID":"1","wcHeight":363,"wcWidth":1805,"wcInitialSize":"50","wcCurrentSize":100.00,"wcItems":[{"wcItemType":"content","wcContentID":"1","wcHeight":358,"wcWidth":1798}]},{"wcItemType":"frame","wcFrameType":"T","wcFrameID":"MFDataFlowOutputFrame","wcHeight":0,"wcWidth":0,"wcInitialSize":"50","wcCurrentSize":0.00}]}]},"wcFramesInfo":[{"wcFrameID":"MFLFrame","wcNotServerID":false,"wcFrameClass":"MFLFrame","wcFrameFlags":0,"wcFrameLabel":"App Tree"},{"wcFrameID":"MFDataFlowEditorFrame","wcNotServerID":false,"wcFrameClass":"MFDataFlowEditorFrame","wcFrameFlags":9,"wcFrameLabel":"Join Editor"},{"wcFrameID":"MFDataFlowOutputFrame","wcNotServerID":false,"wcFrameClass":"MFDataFlowOutputFrame","wcFrameFlags":5,"wcFrameLabel":"Output"}],"wcContentsInfo":[{"wcContentID":"MFLeftContent","wcNotServerID":false,"wcContentFlags":2,"wcContentTitle":"MFLeftContent","wcContentTooltip":"","wcParams":{"_paramN":["IBIS_page","DBG_type"],"_paramV":["FLOWEDITOR_DFLOW","tree_graph"]}},{"wcContentID":"1","wcNotServerID":true,"wcContentFlags":0,"wcContentTitle":"(ID:1)","wcContentTooltip":"","wcParams":{"_paramN":["IBIS_page","APP_fex","FEX_name","CGIX_cmd","CGIX_jobtype","CGI_from","RingId","rowid_at_menu_"],"_paramV":["SIMPLEREP","qa_repository_head/uploads/qa_content/dm","wfr_marketinglist","NTMInit","0","D","RENTRY_qa_repository_head/uploads/qa_content/dm_wfr_marketinglist_FEX_2",""]}}]}

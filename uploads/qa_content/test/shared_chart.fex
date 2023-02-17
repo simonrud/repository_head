@@ -1,0 +1,41 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Chart Using Shared Object
+-*-----------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------*
+SET EMGSRV=OFF
+EX qa_repository_head/uploads/qa_content/test/wf_retail_lite_def
+SET EMGSRV=ON
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+GRAPH FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ SUM
+   SUM.COGS_US
+   BY WF_RETAIL_TIME_SALES.TIME_YEAR
+   BY PRODUCT_CATEGORY_GROUP
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT JSCHART
+ ON TABLE SET LOOKGRAPH BAR
+ ON TABLE SET HTMLENCODE ON
+ ON TABLE SET GRAPHDEFAULT OFF
+ ON TABLE SET AUTOFIT ON
+ ON TABLE SET EMBEDHEADING ON
+ ON TABLE SET STYLE *
+  INCLUDE=_edahome/etc/ENID_Warm, $
+  TYPE=REPORT, CHART-ORIENTATION=HORIZONTAL, $
+  TYPE=DATA, COLUMN=N3, /*SUM.COGS_US*/
+   BUCKET=Y-AXIS, $
+  TYPE=DATA, COLUMN=N1, /*WF_RETAIL_TIME_SALES.TIME_YEAR*/
+   BUCKET=slider, $
+  TYPE=DATA, COLUMN=N2, /*PRODUCT_CATEGORY_GROUP*/
+   BUCKET=X-AXIS, $
+ ENDSTYLE
+ HEADING
+  "Report &FOCFOCEXEC"
+  " <REQUEST.FILTERS"
+ WHERE TIME_YEAR_WHERE EQ 1;
+END

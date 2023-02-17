@@ -1,0 +1,11 @@
+-*DM_JOB_TYPE=16384
+-*DM_REQ_DESC=Shared DEFINE (WFR BV Lite)
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+DEFINE FILE qa_repository_head/uploads/qa_content/bv_namespace_on/wf_retail_lite_on ADD
+ WF_RETAIL_LITE_ON.PRODUCT.PRODUCT_CATEGORY_GROUP/A40V TITLE 'Product,Category,Group'=IF WF_RETAIL_LITE_ON.PRODUCT.PRODUCT_CATEGORY IN ('Accessories','Camcorder','Computers','Media Player') THEN 'Accessories_and_others' ELSE 'default_group';
+ WF_RETAIL_LITE_ON.TRANSACTION_DATE_SIMPLE.TIME_YEAR_WHERE/I1 TITLE 'Year,Filter'= WF_RETAIL_LITE_ON.TRANSACTION_DATE_SIMPLE.TIME_YEAR EQ _FOC_NULL;
+ WF_RETAIL_LITE_ON.SALES.SUM_COGS_US_WHERE_TOTAL/I1 ( AGGREGATABLE=YES , TITLE='SUM,Cost of Goods,Filter')=SUM.WF_RETAIL_LITE_ON.SALES.COGS_US EQ _FOC_NULL;
+END

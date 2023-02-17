@@ -1,0 +1,30 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Shared DEFINE (WFR Stats)
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+TABLE FILE qa_repository_head/uploads/qa_content/wf_retail_lite
+ SUM
+   SUM.COGS_US
+   SUM.REVENUE_US
+   COMPUTE COG_SD/D12.2 MISSING ON ALL TITLE 'Cost, Standard Deviation'=STDDEV( COGS_US , S );
+   COMPUTE COG_V/D12.2 MISSING ON ALL TITLE 'Cost, Variance' = MIN.COGS_US - PARTITION_REF(MIN.COGS_US, TABLE, -1);
+   COMPUTE COG_C/D20.2 MISSING ON ALL TITLE 'Cost vs Revenue, Correlation'=CORRELATION( COGS_US, REVENUE_US );
+   COMPUTE COGS_US_MULTIREGRESS/D20.2M MISSING ON ALL TITLE 'Cost of Goods,Multi Regression'=MULTIREGRESS(SUM.REVENUE_US, SUM.COGS_US);
+   BY WF_RETAIL_GEOGRAPHY_STORE.COUNTRY_NAME
+   BY PRODUCT_CATEGORY
+   BY PRODUCT_SUBCATEG
+ ON TABLE SET STYLE *
+  INCLUDE=_EDAHOME/etc/ENID_Warm, $
+ ENDSTYLE
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT HTML
+ HEADING
+  "Report &FOCFOCEXEC"
+END

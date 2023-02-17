@@ -1,0 +1,44 @@
+-*DM_JOB_TYPE=2
+-*DM_REQ_DESC=Category Rpt, Dynamic JOIN
+-*-----------------------------------------------------------------------------------*
+-* Copyright (c) 2001-2023. Cloud Software Group, Inc. All rights reserved.
+-* @MFSM_NOPROLOG@ Source control tag, please ignore and do not delete.
+-*-----------------------------------------------------------------------------------*
+ENGINE INT SET TABLESAMPLING_PERCENTAGE
+ENGINE INT SET FCA ON
+JOIN
+   ID_AGE
+  IN qa_repository_head/uploads/qa_content/wf_retail_tiny
+ TO
+   ID_AGE
+  IN qa_repository_head/uploads/qa_content/dimensions/wf_retail_age TAG T02
+ AS JN1
+END
+JOIN
+   WF_RETAIL_CUSTOMER.ID_MARITAL_STATUS
+  IN qa_repository_head/uploads/qa_content/wf_retail_tiny
+ TO
+   ID_MARITAL_STATUS
+  IN qa_repository_head/uploads/qa_content/dimensions/wf_retail_marital_status TAG T03
+ AS JN2
+END
+TABLE FILE qa_repository_head/uploads/qa_content/wf_retail_tiny
+ HEADING
+  "Report &FOCFOCEXEC"
+ WRITE
+   AVE.REVENUE_US
+   BY COUNTRY_NAME
+   BY PRODUCT_CATEGORY
+   BY PRODUCT_SUBCATEG
+   BY AGE_RANGE
+   BY MARITAL_STATUS
+ ON TABLE SET STYLE *
+  INCLUDE=_EDAHOME/etc/ENID_Warm, $
+ ENDSTYLE
+ ON TABLE SET PAGE NOPAGE
+ ON TABLE SET EMPTYREPORT ON
+ ON TABLE SET SHORTPATH SQL
+ ON TABLE SET HTMLCSS ON
+ ON TABLE PCHOLD
+  FORMAT HTML
+END
